@@ -14,7 +14,7 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <CarouselView x:Name="MainCarousel" Grid.Row="0" PositionChanged="MainCarousel_PositionChanged">
+        <CarouselView x:Name="MainCarousel" Grid.Row="0" CurrentItemChanged="MainCarousel_CurrentItemChanged">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <Frame Content="{Binding Content}"/>
