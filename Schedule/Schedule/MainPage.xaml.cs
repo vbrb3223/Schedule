@@ -15,15 +15,14 @@ namespace Schedule
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        readonly List<Footer_Button> Buttons_Footer_List;
+
         public MainPage()
         {
             InitializeComponent();
 
             Buttons_Footer_List = new List<Footer_Button>() { Button_Calendar, Button_Notepad, Button_Settings };
 
-            PageSelector.Button_1 = Buttons_Footer_List[0];
-            PageSelector.Button_2 = Buttons_Footer_List[1];
-            PageSelector.Button_3 = Buttons_Footer_List[2];
             PageSelector.MainCaruosel = MainCarousel;
 
             List<PageContent> pages = new List<PageContent>() { new PageContent() { Content = new CalendarPage().Content },
@@ -31,8 +30,6 @@ namespace Schedule
                                                                 new PageContent() { Content = new SettingsPage().Content } };
             MainCarousel.ItemsSource = pages;
         }
-
-        List<Footer_Button> Buttons_Footer_List;
 
         private void Footer_Button_Calendar_Tapped(object sender, EventArgs e)
         {
@@ -79,16 +76,16 @@ namespace Schedule
             }
         }
 
-        class PageContent
-        {
-            public View Content { get; set; }
-        }
-
         private void MainCarousel_PositionChanged(object sender, PositionChangedEventArgs e)
         {
             for (int i = 0; i < Buttons_Footer_List.Count; i++)
                 Buttons_Footer_List[i].LineSelectorColor = i == MainCarousel.Position ? Color.FromHex(Styles.Footer_LineSelector_Color_Active) : 
                                                                                         Color.FromHex(Styles.Footer_LineSelector_Color_Passive);
+        }
+
+        class PageContent
+        {
+            public View Content { get; set; }
         }
     }
 }
