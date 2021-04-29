@@ -34,15 +34,15 @@ namespace Schedule.Tools
 
             switch (pageNumber)
             {
-                case 1 when pageNumber == _selectedPage:
+                case 1:
                     mainCarousel.Position = 0;
                     button_1.LineSelectorColor = Color.FromHex(Styles.Footer_LineSelector_Color_Active);
                     break;
-                case 2 when pageNumber == _selectedPage:
+                case 2:
                     mainCarousel.Position = 1;
                     button_2.LineSelectorColor = Color.FromHex(Styles.Footer_LineSelector_Color_Active);
                     break;
-                case 3 when pageNumber == _selectedPage:
+                case 3:
                     mainCarousel.Position = 2;
                     button_3.LineSelectorColor = Color.FromHex(Styles.Footer_LineSelector_Color_Active);
                     break;
