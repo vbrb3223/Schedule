@@ -22,6 +22,8 @@
             </CarouselView.ItemTemplate>
         </CarouselView>
 
+        <Grid BackgroundColor="#bcb7dc" Grid.Row="1"/>
+
         <FlexLayout Grid.Row="1" AlignItems="Start" JustifyContent="SpaceAround" 
                 BackgroundColor="#bcb7dc">
         <controls:Footer_Button x:Name="Button_Calendar" LineSelectorColor="#57bfff" ButtonImageSource="{tools:ImageSourceExtensions Schedule.Images.calendar.png}">

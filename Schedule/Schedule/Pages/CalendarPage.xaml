@@ -6,10 +6,29 @@
              mc:Ignorable="d"
              x:Class="Schedule.Pages.CalendarPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Grid>
-                <Label Text="Календарь"/>
-            </Grid>
-        </StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Spacing="2" Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="3">
+                <Label Text="Календарь" FontSize="30" TextColor="Black"/>
+                <BoxView BackgroundColor="#ff4e50" HeightRequest="4" CornerRadius="2"/>
+            </StackLayout>
+            <StackLayout Spacing="15" Grid.Row="1" Grid.Column="1">
+                <DatePicker x:Name="DateSelector" TextColor="#696767"/>
+                <TimePicker x:Name="TimeSelector" TextColor="#696767"/>
+                <Editor x:Name="TextEditor" AutoSize="TextChanges" TextColor="#696767"/>
+                <Button x:Name="ButtonAddEvent" BackgroundColor="#ff4e50" Text="Add Event"/>
+            </StackLayout>
+            <BoxView BackgroundColor="#ff4e50" HeightRequest="4" CornerRadius="2"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
