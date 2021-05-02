@@ -13,10 +13,13 @@
   <ItemGroup>
     <None Remove="Images\calendar.png" />
     <None Remove="Images\notepad.png" />
+    <None Remove="Images\pencil.png" />
     <None Remove="Images\settings.png" />
+    <None Remove="Images\trash.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>
@@ -24,7 +27,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Images\calendar.png" />
     <EmbeddedResource Include="Images\notepad.png" />
+    <EmbeddedResource Include="Images\pencil.png" />
     <EmbeddedResource Include="Images\settings.png" />
+    <EmbeddedResource Include="Images\trash.png" />
   </ItemGroup>
 
   <ItemGroup>

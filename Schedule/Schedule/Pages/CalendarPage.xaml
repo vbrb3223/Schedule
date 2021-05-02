@@ -3,32 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tools="clr-namespace:Schedule.Tools"
              mc:Ignorable="d"
              x:Class="Schedule.Pages.CalendarPage">
     <ContentPage.Content>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0.1*"/>
-            </Grid.ColumnDefinitions>
+        <ScrollView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <StackLayout Spacing="2" Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="3">
-                <Label Text="Календарь" FontSize="30" TextColor="Black"/>
-                <BoxView BackgroundColor="#ff4e50" HeightRequest="4" CornerRadius="2"/>
-            </StackLayout>
-            <StackLayout Spacing="15" Grid.Row="1" Grid.Column="1">
-                <DatePicker x:Name="DateSelector" TextColor="#696767"/>
-                <TimePicker x:Name="TimeSelector" TextColor="#696767"/>
-                <Editor x:Name="TextEditor" AutoSize="TextChanges" TextColor="#696767"/>
-                <Button x:Name="ButtonAddEvent" BackgroundColor="#ff4e50" Text="Add Event"/>
-            </StackLayout>
-            <BoxView BackgroundColor="#ff4e50" HeightRequest="4" CornerRadius="2"/>
-        </Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackLayout Spacing="2" Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="3">
+                        <Label Text="Календарь" FontSize="30" TextColor="Black"/>
+                        <BoxView BackgroundColor="#ff4e50" HeightRequest="4" CornerRadius="2"/>
+                </StackLayout>
+                <StackLayout Spacing="15" Grid.Row="1" Grid.Column="1">
+                    <DatePicker x:Name="DateSelector" TextColor="#696767"/>
+                    <TimePicker x:Name="TimeSelector" TextColor="#696767"/>
+                    <Editor x:Name="TextEditor" AutoSize="TextChanges" TextColor="#696767" Placeholder="Текст события"/>
+                    <Button x:Name="ButtonAddEvent" BackgroundColor="#ff4e50" Text="Add Event" Clicked="ButtonAddEvent_Clicked"/>
+                </StackLayout>
+                <StackLayout Spacing="2" Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="3" Margin="0, 20, 0, 0">
+                    <Label Text="Планы" FontSize="20" TextColor="Black"/>
+                    <BoxView BackgroundColor="#ff4e50" HeightRequest="4" CornerRadius="2"/>
+                </StackLayout>
+                <StackLayout Spacing="15" Grid.Row="1" Grid.Column="3">
+                    <ListView x:Name="EventsList">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <SwipeView>
+                                    <Grid BackgroundColor="#d7fdcc">
+                                        <Label Text="{Binding Event_Text}"/>
+                                    </Grid>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem
+                                                Text="Редактировать"
+                                                IconImageSource="{tools:ImageSourceExtensions Schedule.Images.pencil.png}"
+                                                BackgroundColor="#96abff"
+                                                />
+                                            <SwipeItem
+                                                Text="Удалить"
+                                                IconImageSource="{tools:ImageSourceExtensions Schedule.Images.trash.png}"
+                                                BackgroundColor="#ff6262"
+                                                />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                </SwipeView>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
