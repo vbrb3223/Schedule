@@ -20,7 +20,6 @@ namespace Schedule.Pages
             InitializeComponent();
             conn = new SQLiteConnection(App.FilePath);
             PagePresets();
-            EventsList.ItemsSource = Events;
             UploadEvents();
         }
 
@@ -65,9 +64,12 @@ namespace Schedule.Pages
 
         public void UploadEvents()
         {
+            
             Events.Clear();
+            EventsList.ItemsSource = null;
             conn.CreateTable<Event>();
             Events.AddRange(conn.Table<Event>().ToList());
+            EventsList.ItemsSource = Events;
         }
     }
 }

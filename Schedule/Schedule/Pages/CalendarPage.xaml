@@ -31,7 +31,7 @@
                             <BoxView BackgroundColor="#ff4e50" HeightRequest="4" CornerRadius="2"/>
                         </StackLayout>
                         <StackLayout Spacing="15">
-                            <CollectionView x:Name="EventsList">
+                            <CollectionView x:Name="EventsList" EmptyView="Нет событий">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout Margin="0,0,0,5">
