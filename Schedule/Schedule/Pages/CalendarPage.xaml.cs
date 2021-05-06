@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SQLite;
+using Schedule.Data;
 
 namespace Schedule.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CalendarPage : ContentPage
     {
+        SQLiteConnection conn;
+        public List<Event> Events = new List<Event>();
+
         public CalendarPage()
         {
             InitializeComponent();
-            DateSelector.MinimumDate = DateTime.Now;
-            DateSelector.Date = DateTime.Now;
-            TimeSelector.Time = DateTime.Now.TimeOfDay.Add(new TimeSpan(0, 5, 0));
+            conn = new SQLiteConnection(App.FilePath);
+            PagePresets();
+            EventsList.ItemsSource = Events;
+            UploadEvents();
         }
 
         private void ButtonAddEvent_Clicked(object sender, EventArgs e)
@@ -42,7 +44,30 @@ namespace Schedule.Pages
                 return;
             }
 
+            Event newEvent = new Event()
+            {
+                Date = DateSelector.Date,
+                Time = TimeSelector.Time,
+                Text = TextEditor.Text
+            };
             
+            conn.CreateTable<Event>();
+            conn.Insert(newEvent);
+            UploadEvents();
+        }
+
+        public void PagePresets()
+        {
+            DateSelector.MinimumDate = DateTime.Now;
+            DateSelector.Date = DateTime.Now;
+            TimeSelector.Time = DateTime.Now.TimeOfDay.Add(new TimeSpan(0, 5, 0));
+        }
+
+        public void UploadEvents()
+        {
+            Events.Clear();
+            conn.CreateTable<Event>();
+            Events.AddRange(conn.Table<Event>().ToList());
         }
     }
 }
