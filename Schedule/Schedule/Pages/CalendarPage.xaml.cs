@@ -4,7 +4,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SQLite;
 using Schedule.Data;
-using Xam.Plugin;
 
 namespace Schedule.Pages
 {
@@ -73,12 +72,6 @@ namespace Schedule.Pages
 
         private void EditEvent_Clicked(object sender, EventArgs e)
         {
-            Frame frame = new Frame();
-            frame.WidthRequest = 100;
-            frame.HeightRequest = 100;
-            frame.BackgroundColor = Color.Red;
-            PopupMenu editMenu = new PopupMenu();
-            editMenu.ShowPopup(frame);
         }
 
         private void DeleteEvent_Clicked(object sender, EventArgs e)
