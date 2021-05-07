@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SQLite;
 using Schedule.Data;
+using Xam.Plugin;
 
 namespace Schedule.Pages
 {
@@ -70,6 +69,30 @@ namespace Schedule.Pages
             conn.CreateTable<Event>();
             Events.AddRange(conn.Table<Event>().ToList());
             EventsList.ItemsSource = Events;
+        }
+
+        private void EditEvent_Clicked(object sender, EventArgs e)
+        {
+            Frame frame = new Frame();
+            frame.WidthRequest = 100;
+            frame.HeightRequest = 100;
+            frame.BackgroundColor = Color.Red;
+            PopupMenu editMenu = new PopupMenu();
+            editMenu.ShowPopup(frame);
+        }
+
+        private void DeleteEvent_Clicked(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                if (await App.Current.MainPage.DisplayAlert("Подтверждение", "Вы хотите удалить событие?", "Да", "Нет"))
+                {
+                    conn.CreateTable<Event>();
+                    Event currentEvent = (sender as SwipeItem).BindingContext as Event;
+                    conn.Delete(conn.Table<Event>().Where(ev => ev.Id == currentEvent.Id).FirstOrDefault());
+                    UploadEvents();
+                }
+            });
         }
     }
 }

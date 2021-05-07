@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -26,7 +25,6 @@ namespace Schedule.Droid
             string fileName = "schedule_db.db3";
             string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             string completePath = Path.Combine(folderPath, fileName);
-
             LoadApplication(new App(completePath));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

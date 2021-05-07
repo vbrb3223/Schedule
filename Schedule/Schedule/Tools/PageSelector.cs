@@ -13,7 +13,6 @@ namespace Schedule.Tools
         static Footer_Button button_2;
         static Footer_Button button_3;
         static CarouselView mainCarousel;
-        public static bool IsLockedSelection = false;
 
         public static int SelectedPage { get { return _selectedPage; } }
         public static Footer_Button Button_1 { set { button_1 = value; } }
@@ -40,17 +39,14 @@ namespace Schedule.Tools
             {
                 case 1:
                     button_1.LineSelectorColor = Color.FromHex(Styles.Footer_LineSelector_Color_Active);
-                    IsLockedSelection = true;
                     mainCarousel.Position = 0;
                     break;
                 case 2:
                     button_2.LineSelectorColor = Color.FromHex(Styles.Footer_LineSelector_Color_Active);
-                    IsLockedSelection = true;
                     mainCarousel.Position = 1;
                     break;
                 case 3:
                     button_3.LineSelectorColor = Color.FromHex(Styles.Footer_LineSelector_Color_Active);
-                    IsLockedSelection = true;
                     mainCarousel.Position = 2;
                     break;
             }

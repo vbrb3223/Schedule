@@ -26,7 +26,7 @@
                             <Editor x:Name="TextEditor" AutoSize="TextChanges" TextColor="#696767" Placeholder="Текст события"/>
                             <Button x:Name="ButtonAddEvent" CornerRadius="5" BackgroundColor="#ff4e50" Text="Добавить событие" Clicked="ButtonAddEvent_Clicked"/>
                         </StackLayout>
-                        <StackLayout Spacing="2" Orientation="Vertical" Margin="0, 30, 0, 0">
+                        <StackLayout Spacing="2" Orientation="Vertical" Margin="0, 30, 0, 10">
                             <Label Text="Планы" FontSize="20" TextColor="Black"/>
                             <BoxView BackgroundColor="#ff4e50" HeightRequest="4" CornerRadius="2"/>
                         </StackLayout>
@@ -34,8 +34,11 @@
                             <CollectionView x:Name="EventsList" EmptyView="Нет событий">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackLayout Margin="0,0,0,5">
-                                            <SwipeView HeightRequest="60" BackgroundColor="Transparent">
+                                        <StackLayout Margin="0,0,0,10" Spacing="0">
+                                            <Frame HeightRequest="17" BackgroundColor="#e6e6fa" Margin="10, 0, 10, 0" Padding="5, 2, 5, 2">
+                                                <Label LineBreakMode="WordWrap" Text="{Binding Text}"/>
+                                            </Frame>
+                                            <SwipeView HeightRequest="75" BackgroundColor="Transparent">
                                                 <Frame CornerRadius="10"
                                                     OutlineColor="#ff4e50">
                                                     <Grid>
@@ -47,7 +50,7 @@
                                                         <Label FontSize="18" Grid.Column="0" HorizontalOptions="CenterAndExpand" Text="{Binding Date, StringFormat=\{0:d\}}" VerticalOptions="CenterAndExpand"/>
                                                         <Label FontSize="18" Grid.Column="1" HorizontalOptions="CenterAndExpand" Text="{Binding Time, StringFormat=\{0:h\\:mm\}}" VerticalOptions="CenterAndExpand"/>
 
-                                                        <Label Grid.Column="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="18" Text="{Binding Text}"/>
+                                                        
                                                     </Grid>
                                                 </Frame>
                                                 <SwipeView.RightItems>
@@ -56,11 +59,13 @@
                                                                 Text="Изменить"
                                                                 IconImageSource="{tools:ImageSourceExtensions Schedule.Images.pencil.png}"
                                                                 BackgroundColor="#96abff"
+                                                                Invoked="EditEvent_Clicked"
                                                                 />
                                                         <SwipeItem
                                                                 Text="Удалить"
                                                                 IconImageSource="{tools:ImageSourceExtensions Schedule.Images.trash.png}"
                                                                 BackgroundColor="#ff6262"
+                                                                Invoked="DeleteEvent_Clicked"
                                                                 />
                                                     </SwipeItems>
                                                 </SwipeView.RightItems>

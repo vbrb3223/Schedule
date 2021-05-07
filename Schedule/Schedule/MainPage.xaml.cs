@@ -79,23 +79,6 @@ namespace Schedule
             }
         }
 
-        private void MainCarousel_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
-        {
-            try
-            {
-                if (!PageSelector.IsLockedSelection)
-                    PageSelector.SelectPage(MainCarousel.Position + 1);
-                PageSelector.IsLockedSelection = false;
-            }
-            catch (Exception ex)
-            {
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await App.Current.MainPage.DisplayAlert("Exception", ex.Message, "OK");
-                });
-            }
-        }
-
         class PageContent
         {
             public View Content { get; set; }
