@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tools="clr-namespace:Schedule.Tools"
+             mc:Ignorable="d"
+             x:Class="Schedule.Pages.CalendarPage">
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackLayout Spacing="2" Orientation="Vertical" Grid.Row="0">
+                            <Label Text="Календарь" FontSize="30" TextColor="Black"/>
+                            <BoxView BackgroundColor="#ff4e50" HeightRequest="4" CornerRadius="2"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Orientation="Vertical">
+                        <StackLayout Spacing="15" Margin="20, 0, 20, 0">
+                            <DatePicker x:Name="DateSelector" TextColor="#696767"/>
+                            <TimePicker x:Name="TimeSelector" TextColor="#696767"/>
+                            <Editor x:Name="TextEditor" AutoSize="TextChanges" TextColor="#696767" Placeholder="Текст события"/>
+                            <Button x:Name="ButtonAddEvent" CornerRadius="5" BackgroundColor="#ff4e50" Text="Добавить событие" Clicked="ButtonAddEvent_Clicked"/>
+                        </StackLayout>
+                        <StackLayout Spacing="2" Orientation="Vertical" Margin="0, 30, 0, 10">
+                            <Label Text="Планы" FontSize="20" TextColor="Black"/>
+                            <BoxView BackgroundColor="#ff4e50" HeightRequest="4" CornerRadius="2"/>
+                        </StackLayout>
+                        <StackLayout Spacing="15">
+                            <CollectionView x:Name="EventsList" EmptyView="Нет событий">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Margin="0,0,0,10" Spacing="0">
+                                            <Frame HeightRequest="17" BackgroundColor="#e6e6fa" Margin="10, 0, 10, 0" Padding="5, 2, 5, 2">
+                                                <Label LineBreakMode="WordWrap" Text="{Binding Text}"/>
+                                            </Frame>
+                                            <SwipeView HeightRequest="75" BackgroundColor="Transparent">
+                                                <Frame CornerRadius="10"
+                                                    OutlineColor="#ff4e50">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label FontSize="18" Grid.Column="0" HorizontalOptions="CenterAndExpand" Text="{Binding Date, StringFormat=\{0:d\}}" VerticalOptions="CenterAndExpand"/>
+                                                        <Label FontSize="18" Grid.Column="1" HorizontalOptions="CenterAndExpand" Text="{Binding Time, StringFormat=\{0:h\\:mm\}}" VerticalOptions="CenterAndExpand"/>
+
+                                                        
+                                                    </Grid>
+                                                </Frame>
+                                                <SwipeView.RightItems>
+                                                    <SwipeItems Mode="Reveal">
+                                                        <SwipeItem
+                                                                Text="Изменить"
+                                                                IconImageSource="{tools:ImageSourceExtensions Schedule.Images.pencil.png}"
+                                                                BackgroundColor="#96abff"
+                                                                Invoked="EditEvent_Clicked"
+                                                                />
+                                                        <SwipeItem
+                                                                Text="Удалить"
+                                                                IconImageSource="{tools:ImageSourceExtensions Schedule.Images.trash.png}"
+                                                                BackgroundColor="#ff6262"
+                                                                Invoked="DeleteEvent_Clicked"
+                                                                />
+                                                    </SwipeItems>
+                                                </SwipeView.RightItems>
+                                            </SwipeView>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
