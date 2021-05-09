@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SQLite;
 using Schedule.Data;
+using System.Linq;
 
 namespace Schedule.Pages
 {

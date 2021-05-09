@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <None Remove="Images\calendar.png" />
+    <None Remove="Images\left-arrow.png" />
     <None Remove="Images\notepad.png" />
     <None Remove="Images\pencil.png" />
     <None Remove="Images\settings.png" />
@@ -26,6 +27,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Images\calendar.png" />
+    <EmbeddedResource Include="Images\left-arrow.png" />
     <EmbeddedResource Include="Images\notepad.png" />
     <EmbeddedResource Include="Images\pencil.png" />
     <EmbeddedResource Include="Images\settings.png" />

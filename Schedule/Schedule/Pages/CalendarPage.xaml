@@ -31,13 +31,10 @@
                             <BoxView BackgroundColor="#ff4e50" HeightRequest="4" CornerRadius="2"/>
                         </StackLayout>
                         <StackLayout Spacing="15">
-                            <CollectionView x:Name="EventsList" EmptyView="Нет событий">
+                            <CollectionView x:Name="EventsList" EmptyView="Нет событий" VerticalOptions="StartAndExpand">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackLayout Margin="0,0,0,10" Spacing="0">
-                                            <Frame HeightRequest="17" BackgroundColor="#e6e6fa" Margin="10, 0, 10, 0" Padding="5, 2, 5, 2">
-                                                <Label LineBreakMode="WordWrap" Text="{Binding Text}"/>
-                                            </Frame>
+                                        <StackLayout Margin="0,0,0,15" Spacing="0">
                                             <SwipeView HeightRequest="75" BackgroundColor="Transparent">
                                                 <Frame CornerRadius="10"
                                                     OutlineColor="#ff4e50">
@@ -50,7 +47,7 @@
                                                         <Label FontSize="18" Grid.Column="0" HorizontalOptions="CenterAndExpand" Text="{Binding Date, StringFormat=\{0:d\}}" VerticalOptions="CenterAndExpand"/>
                                                         <Label FontSize="18" Grid.Column="1" HorizontalOptions="CenterAndExpand" Text="{Binding Time, StringFormat=\{0:h\\:mm\}}" VerticalOptions="CenterAndExpand"/>
 
-                                                        
+                                                        <Image Grid.Column="2" HorizontalOptions="End" Margin="0, 0, 10, 0" Source="{tools:ImageSourceExtensions Schedule.Images.left-arrow.png}"/>
                                                     </Grid>
                                                 </Frame>
                                                 <SwipeView.RightItems>
@@ -70,6 +67,10 @@
                                                     </SwipeItems>
                                                 </SwipeView.RightItems>
                                             </SwipeView>
+
+                                            <Frame BorderColor="#ff4e50" CornerRadius="2" Margin="10, -3, 10, 0" Padding="5, 2, 5, 2">
+                                                <Label LineBreakMode="WordWrap" FontSize="16" Text="{Binding Text}" HorizontalOptions="Center"/>
+                                            </Frame>
                                         </StackLayout>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
