@@ -28,7 +28,21 @@
                                 <Button x:Name="ButtonAddEvent" CornerRadius="5" BackgroundColor="#ff4e50" Text="Добавить событие" Clicked="ButtonAddEvent_Clicked"/>
                             </StackLayout>
                             <StackLayout Spacing="2" Orientation="Vertical" Margin="0, 30, 0, 10">
-                                <Label Text="Планы" FontSize="20" TextColor="Black"/>
+                                <FlexLayout JustifyContent="SpaceBetween">
+                                    <Label Text="Планы" FontSize="20" TextColor="Black"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image x:Name="SelectedTrashButton" Source="{tools:ImageSourceExtensions Schedule.Images.trash_selector.png}" WidthRequest="25" IsVisible="False">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="SelectorTrash_Tapped"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Image Source="{tools:ImageSourceExtensions Schedule.Images.select.png}" WidthRequest="25">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="SelectorButton_Tapped"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </StackLayout>
+                                </FlexLayout>
                                 <BoxView BackgroundColor="#ff4e50" HeightRequest="4" CornerRadius="2"/>
                             </StackLayout>
                             <StackLayout Spacing="15">
@@ -37,6 +51,9 @@
                                         <DataTemplate>
                                             <StackLayout Margin="0,10,0,0" Spacing="0">
                                                 <SwipeView HeightRequest="75" BackgroundColor="Transparent">
+                                                    <SwipeView.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="EventSelector_Tapped"/>
+                                                    </SwipeView.GestureRecognizers>
                                                     <Frame CornerRadius="10"
                                                     OutlineColor="#ff4e50">
                                                         <Grid>
@@ -47,7 +64,6 @@
                                                             </Grid.ColumnDefinitions>
                                                             <Label FontSize="18" Grid.Column="0" HorizontalOptions="CenterAndExpand" Text="{Binding Date, StringFormat=\{0:d\}}" VerticalOptions="CenterAndExpand"/>
                                                             <Label FontSize="18" Grid.Column="1" HorizontalOptions="CenterAndExpand" Text="{Binding Time, StringFormat=\{0:h\\:mm\}}" VerticalOptions="CenterAndExpand"/>
-
                                                             <Image Grid.Column="2" HorizontalOptions="End" Margin="0, 0, 10, 0" Source="{tools:ImageSourceExtensions Schedule.Images.left-arrow.png}"/>
                                                         </Grid>
                                                     </Frame>

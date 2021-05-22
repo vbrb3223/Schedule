@@ -15,8 +15,11 @@
     <None Remove="Images\left-arrow.png" />
     <None Remove="Images\notepad.png" />
     <None Remove="Images\pencil.png" />
+    <None Remove="Images\select.png" />
+    <None Remove="Images\select_active.png" />
     <None Remove="Images\settings.png" />
     <None Remove="Images\trash.png" />
+    <None Remove="Images\trash_selector.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,8 +33,11 @@
     <EmbeddedResource Include="Images\left-arrow.png" />
     <EmbeddedResource Include="Images\notepad.png" />
     <EmbeddedResource Include="Images\pencil.png" />
+    <EmbeddedResource Include="Images\select.png" />
+    <EmbeddedResource Include="Images\select_active.png" />
     <EmbeddedResource Include="Images\settings.png" />
     <EmbeddedResource Include="Images\trash.png" />
+    <EmbeddedResource Include="Images\trash_selector.png" />
   </ItemGroup>
 
   <ItemGroup>

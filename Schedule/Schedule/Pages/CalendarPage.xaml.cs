@@ -12,7 +12,9 @@ namespace Schedule.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CalendarPage : ContentPage
     {
-        SQLiteConnection conn;
+        List<Frame> eventsToSelection = new List<Frame>();
+        bool Selector = false;
+        readonly SQLiteConnection conn;
         public List<Event> Events = new List<Event>();
         int eventToEditID = 0;
 
@@ -160,6 +162,62 @@ namespace Schedule.Pages
             popup_TPTime.Time = currentEvent.Time;
             popup_EditorText.Text = currentEvent.Text;
             eventToEditID = currentEvent.Id;
+        }
+
+        private void EventSelector_Tapped(object sender, EventArgs e)
+        {
+            var eventContainer = ((sender as SwipeView).Content as Frame);
+            if (Selector)
+            {
+                if (eventContainer.BackgroundColor == Color.Default)
+                {
+                    eventContainer.BackgroundColor = Color.FromHex("#ea7273");
+                    eventsToSelection.Add(eventContainer);
+                }
+                else
+                {
+                    eventContainer.BackgroundColor = Color.Default;
+                    eventsToSelection.Remove(eventContainer);
+                }
+            }
+        }
+
+        private void SelectorButton_Tapped(object sender, EventArgs e)
+        {
+            var image = (sender as Image);
+
+            if (Selector)
+            {
+                image.Source = ImageSource.FromResource("Schedule.Images.select.png");
+                eventsToSelection.ForEach(ev => ev.BackgroundColor = Color.Default);
+                eventsToSelection.Clear();
+                SelectedTrashButton.IsVisible = false;
+            }
+            else
+            {
+                image.Source = ImageSource.FromResource("Schedule.Images.select_active.png");
+                SelectedTrashButton.IsVisible = true;
+            }
+
+            Selector = !Selector;
+        }
+
+        private void SelectorTrash_Tapped(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                if (await App.Current.MainPage.DisplayAlert("Подтверждение", "Вы хотите удалить выбранные события?", "Да", "Нет"))
+                {
+                    conn.CreateTable<Event>();
+                    eventsToSelection.ForEach(ev => {
+                        var eventContainer = (ev.Parent as SwipeView).Parent as StackLayout;
+                        var eventInfo = (eventContainer.BindingContext) as Event;
+                        conn.Delete(conn.Table<Event>().Where(evnt => evnt.Id == eventInfo.Id).FirstOrDefault());
+                    });
+                    UploadEvents();
+                }
+            });
+            
         }
     }
 }
